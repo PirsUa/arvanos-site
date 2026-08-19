@@ -1,6 +1,13 @@
 (() => {
   const COOKIE_NAME = 'arvanos_lang';
   const COOKIE_MAX_AGE = 60 * 60 * 24 * 365;
+  const githubPagesBase = location.hostname.endsWith('.github.io')
+    ? `/${location.pathname.split('/').filter(Boolean)[0] || ''}`
+    : '';
+
+  function languageRoot(language) {
+    return `${githubPagesBase}${language === 'uk' ? '/uk/' : '/'}`;
+  }
 
   function readPreference() {
     const match = document.cookie
@@ -17,7 +24,16 @@
   }
 
   document.querySelectorAll('[data-language-switch]').forEach((link) => {
-    link.addEventListener('click', () => savePreference(link.dataset.languageTarget));
+    link.addEventListener('click', (event) => {
+      const targetLanguage = link.dataset.languageTarget;
+      savePreference(targetLanguage);
+      if (targetLanguage !== 'en' && targetLanguage !== 'uk') return;
+      const requestedStep = new URL(link.href, location.href).searchParams.get('step');
+      const destination = new URL(languageRoot(targetLanguage), location.origin);
+      if (requestedStep) destination.searchParams.set('step', requestedStep);
+      event.preventDefault();
+      location.assign(destination.href);
+    });
   });
 
   const skipLink = document.querySelector('.skip-link');
@@ -37,11 +53,11 @@
   const language = preference || (browserLanguage === 'uk' || browserLanguage.startsWith('uk-') ? 'uk' : 'en');
 
   if (document.body.hasAttribute('data-language-router')) {
-    const destination = language === 'uk' ? './uk/field-transition-demo' : './field-transition-demo';
+    const destination = `${languageRoot(language)}field-transition-demo`;
     location.replace(destination);
     return;
   }
 
   if (!document.body.hasAttribute('data-language-entry') || language === document.documentElement.lang) return;
-  location.replace(language === 'uk' ? './uk/' : '../');
+  location.replace(languageRoot(language));
 })();
