@@ -37,6 +37,6 @@
   const preference = readPreference();
   const browserLanguage = (navigator.languages?.[0] || navigator.language || '').toLowerCase();
   const language = preference || (browserLanguage === 'uk' || browserLanguage.startsWith('uk-') ? 'uk' : 'en');
-  const destination = language === 'uk' ? './uk/field-transition-demo.html' : './field-transition-demo.html';
+  const destination = language === 'uk' ? './uk/field-transition-demo' : './field-transition-demo';
   location.replace(destination);
 })();
