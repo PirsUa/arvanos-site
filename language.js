@@ -32,11 +32,16 @@
     });
   }
 
-  if (!document.body.hasAttribute('data-language-entry')) return;
-
   const preference = readPreference();
   const browserLanguage = (navigator.languages?.[0] || navigator.language || '').toLowerCase();
   const language = preference || (browserLanguage === 'uk' || browserLanguage.startsWith('uk-') ? 'uk' : 'en');
-  const destination = language === 'uk' ? './uk/field-transition-demo' : './field-transition-demo';
-  location.replace(destination);
+
+  if (document.body.hasAttribute('data-language-router')) {
+    const destination = language === 'uk' ? './uk/field-transition-demo' : './field-transition-demo';
+    location.replace(destination);
+    return;
+  }
+
+  if (!document.body.hasAttribute('data-language-entry') || language === document.documentElement.lang) return;
+  location.replace(language === 'uk' ? './uk/' : '../');
 })();
