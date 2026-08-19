@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://pirsua.github.io/arvanos-site/sitemap.xml
+Sitemap: https://arvanos.com/sitemap.xml
