@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#eef0dc" />
+    <meta name="description" content="Arvanos is an AI-powered hardware-software system for building, calibrating and continuously refining soil property maps." />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Arvanos" />
+    <meta property="og:locale" content="en_GB" />
+    <meta property="og:locale:alternate" content="uk_UA" />
+    <meta property="og:title" content="Arvanos — soil maps that keep improving" />
+    <meta property="og:description" content="An AI-powered system for building, calibrating and continuously refining soil property maps." />
+    <meta property="og:image" content="https://pirsua.github.io/arvanos-site/assets/og-arvanos.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Arvanos precision agriculture over an aerial view of farmland" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <title>Arvanos — soil maps that keep improving</title>
+    <link rel="canonical" href="https://pirsua.github.io/arvanos-site/field-transition-demo.html" />
+    <link rel="alternate" hreflang="en" href="https://pirsua.github.io/arvanos-site/field-transition-demo.html" />
+    <link rel="alternate" hreflang="uk" href="https://pirsua.github.io/arvanos-site/uk/field-transition-demo.html" />
+    <link rel="alternate" hreflang="x-default" href="https://pirsua.github.io/arvanos-site/field-transition-demo.html" />
+    <link rel="icon" href="./assets/arvanos-favicon-a.svg?v=20260819-a2" type="image/svg+xml" />
+    <link rel="stylesheet" href="./field-transition-demo.css?v=20260819-release1" />
+  </head>
+  <body>
+    <a class="skip-link" href="#start">Skip to content</a>
+    <header class="site-header">
+      <a class="wordmark" href="#start" aria-label="Arvanos — back to the beginning">
+        <img src="./assets/arvanos-logo-primary.svg?v=20260818-bold7" alt="" />
+      </a>
+      <nav id="quick-nav" class="quick-nav" aria-label="Primary navigation">
+        <a href="#precision">Precision agriculture</a>
+        <a href="#arvanos">How Arvanos works</a>
+        <a href="./project.html#project">About the project</a>
+        <a href="./project.html#team">About the team</a>
+        <a href="./partnership.html">Partnership</a>
+        <a class="language-switch" href="./uk/field-transition-demo.html" hreflang="uk" lang="uk" data-language-switch data-language-target="uk">UA</a>
+      </nav>
+      <button class="menu-button" type="button" aria-label="Open navigation" aria-controls="quick-nav" aria-expanded="false">Menu</button>
+    </header>
+
+    <main id="start" class="experience" tabindex="0" aria-label="The Arvanos story">
+      <h1 class="visually-hidden">Arvanos precision agriculture and soil mapping</h1>
+      <div class="field-stage">
+        <video id="field-video" class="source-video" muted playsinline loop autoplay preload="auto" poster="./assets/field-reference-start.png" aria-hidden="true">
+          <source src="./assets/arvanos-field-loop-smooth.mp4" type="video/mp4" />
+        </video>
+        <div class="video-shade" aria-hidden="true"></div>
+
+        <svg id="field-object" class="field-object" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <defs>
+            <pattern id="field-map-grid-pattern" width="42" height="42" patternUnits="userSpaceOnUse">
+              <path d="M 42 0 L 0 0 0 42" class="field-grid-line" />
+            </pattern>
+            <pattern id="field-detail-pattern" width="92" height="92" patternUnits="userSpaceOnUse" patternTransform="rotate(-18)">
+              <circle cx="18" cy="22" r="4" class="field-data-dot" />
+              <circle cx="70" cy="62" r="2.5" class="field-data-dot field-data-dot--soft" />
+              <path d="M0 74 C24 50 62 52 92 28" class="field-data-line" />
+            </pattern>
+            <linearGradient id="field-map-gradient" x1="0" y1="1" x2="1" y2="0">
+              <stop offset="0" stop-color="#5d7b37" />
+              <stop offset=".36" stop-color="#b8dc65" />
+              <stop offset=".68" stop-color="#eadc77" />
+              <stop offset="1" stop-color="#cf8d54" />
+            </linearGradient>
+          </defs>
+          <path id="field-map-base" class="field-map-base" />
+          <path id="field-map-zones" class="field-map-zones" />
+          <image class="field-layer-image is-current" width="1024" height="1024" preserveAspectRatio="none" />
+          <image class="field-layer-image" width="1024" height="1024" preserveAspectRatio="none" />
+          <image class="method-overlay-image method-overlay-image--hyperspectral" href="./assets/field-map-layers/method-overlays/hyperspectral-defect-mask.png" width="1024" height="1024" preserveAspectRatio="none" />
+          <image class="method-overlay-image method-overlay-image--indirect" href="./assets/field-map-layers/method-overlays/indirect-survey-mask.png" width="1024" height="1024" preserveAspectRatio="none" />
+          <image class="vegetation-anomaly-image" href="./assets/field-map-layers/vegetation-anomalies.png" width="1024" height="1024" preserveAspectRatio="none" />
+          <g class="vegetation-targets-layer">
+            <g class="vegetation-target" transform="translate(488 417)"><circle r="21" /><circle class="vegetation-target__core" r="8" /><text y="6">1</text></g>
+            <g class="vegetation-target" transform="translate(245 570)"><circle r="21" /><circle class="vegetation-target__core" r="8" /><text y="6">2</text></g>
+            <g class="vegetation-target" transform="translate(880 304)"><circle r="21" /><circle class="vegetation-target__core" r="8" /><text y="6">3</text></g>
+          </g>
+          <g class="herus-targets-layer"></g>
+          <g class="lab-control-targets-layer" aria-hidden="true">
+            <g class="lab-control-target" transform="translate(448 520)"><circle class="lab-control-target__halo" r="16" /><circle class="lab-control-target__core" r="5.5" /></g>
+            <g class="lab-control-target" transform="translate(709 409)"><circle class="lab-control-target__halo" r="16" /><circle class="lab-control-target__core" r="5.5" /></g>
+            <g class="lab-control-target" transform="translate(612 548)"><circle class="lab-control-target__halo" r="16" /><circle class="lab-control-target__core" r="5.5" /></g>
+          </g>
+          <image class="sampling-grid-image is-current" width="1024" height="1024" preserveAspectRatio="none" />
+          <image class="sampling-grid-image" width="1024" height="1024" preserveAspectRatio="none" />
+          <path id="field-map-detail" class="field-map-detail" />
+          <path id="field-outline" class="field-outline" />
+          <path id="field-map-grid" class="field-map-grid" />
+        </svg>
+
+        <aside class="map-status" aria-label="Main field map layers">
+          <p class="map-status__eyebrow">Map layers</p>
+          <ul class="map-layers" aria-label="Field map data layers">
+            <li><button class="map-layer-button" type="button" data-map-layer-chip="moisture" aria-pressed="true">Soil moisture</button></li>
+            <li><button class="map-layer-button" type="button" data-map-layer-chip="nutrition" aria-pressed="false">Nutrient status · NPK</button></li>
+            <li><button class="map-layer-button" type="button" data-map-layer-chip="organic" aria-pressed="false">Soil organic matter</button></li>
+            <li><button class="map-layer-button" type="button" data-map-layer-chip="ph" aria-pressed="false">Soil acidity · pH</button></li>
+            <li><button class="map-layer-button" type="button" data-map-layer-chip="compaction" aria-pressed="false">Soil compaction</button></li>
+            <li><button class="map-layer-button" type="button" data-map-layer-chip="vegetation" aria-pressed="false">Crop condition · NDVI</button></li>
+          </ul>
+          <div class="sampling-detail" aria-label="Map accuracy">
+            <p class="map-status__eyebrow">ACCURACY</p>
+            <div id="detail-stepper" class="detail-stepper" role="group" aria-label="Map accuracy">
+              <span class="detail-stepper__track" aria-hidden="true"><span></span></span>
+              <button class="detail-step-button" type="button" data-detail-level="0" aria-pressed="false"><span class="detail-step-button__dot" aria-hidden="true"></span><span>Baseline</span></button>
+              <button class="detail-step-button" type="button" data-detail-level="1" aria-pressed="false"><span class="detail-step-button__dot" aria-hidden="true"></span><span>Standard</span></button>
+              <button class="detail-step-button" type="button" data-detail-level="2" aria-pressed="false"><span class="detail-step-button__dot" aria-hidden="true"></span><span>Detailed</span></button>
+              <button class="detail-step-button" type="button" data-detail-level="3" aria-pressed="false"><span class="detail-step-button__dot" aria-hidden="true"></span><span>High</span></button>
+            </div>
+            <div class="sampling-detail__readout">
+              <strong><b id="sampling-sample-count"></b><span id="sampling-sample-unit">No sampling grid</span></strong>
+            </div>
+          </div>
+        </aside>
+        <aside id="scene-note" class="scene-note" aria-live="polite"></aside>
+        <aside class="maya-note" aria-label="Dynas Maya survey result">
+          <p class="maya-note__title">MAYA DATA AFTER FILTERING</p>
+          <p>Higher spatial detail · some surface interference filtered out</p>
+          <p class="maya-note__masked">Residual interference still requires ground verification and calibration</p>
+        </aside>
+        <aside class="cost-comparison" aria-label="Laboratory sample count comparison">
+          <p class="cost-comparison__title">NUMBER OF SAMPLES</p>
+          <div class="cost-comparison__stage">
+            <div class="cost-comparison__item cost-comparison__item--traditional">
+              <strong>26</strong>
+              <span>SAMPLES · DETAILED MAP</span>
+            </div>
+            <div class="cost-comparison__item cost-comparison__item--arvanos">
+              <strong>3</strong>
+              <span>SAMPLES · HIGH-ACCURACY MAP</span>
+            </div>
+          </div>
+        </aside>
+        <aside class="ai-core-note" aria-label="Live Arvanos coordination loop">
+          <p class="ai-core-note__title"><span aria-hidden="true"></span>LIVE · ARVANOS AI ORCHESTRATION</p>
+          <div class="ai-core-flow">
+            <p class="ai-core-step ai-core-step--maya">MAYA · SURFACE OBSERVATIONS</p>
+            <p class="ai-core-step ai-core-step--herus">HERUS · SUBSURFACE MEASUREMENTS</p>
+            <p class="ai-core-step ai-core-step--lab">LABORATORY · CALIBRATION</p>
+            <p class="ai-core-step ai-core-step--core">ARVANOS · ANALYSIS AND UPDATE</p>
+            <p class="ai-core-step ai-core-step--map">MAP UPDATED</p>
+            <p class="ai-core-step ai-core-step--task">NEW TASK → MAYA / HERUS</p>
+          </div>
+        </aside>
+      </div>
+
+      <div class="story-flow">
+        <article id="precision" class="story-step story-step--section-intro" data-scene="track" data-section="1">
+          <div class="story-card story-card--section-intro">
+            <h2>A SOIL MAP IS THE FOUNDATION OF PRECISION AGRICULTURE</h2>
+          </div>
+        </article>
+
+        <article class="story-step" data-scene="track" data-section="1">
+          <div class="story-card">
+            <p class="section-kicker">A SOIL MAP IS THE FOUNDATION OF PRECISION AGRICULTURE</p>
+            <h2>PRECISION AGRICULTURE BEGINS WITH A SOIL MAP.</h2>
+            <p>Agriculture is entering the era of precision management.</p>
+            <p>Satellites, drones, autosteer systems, robotics and AI already make it possible to manage fields more precisely, respond faster and reduce manual decision-making.</p>
+            <p>Yet all of that precision depends on one fundamental layer: a detailed soil map.</p>
+          </div>
+        </article>
+
+        <article class="story-step" data-scene="transition" data-refinement="0" data-map-title="Digital soil property layers" data-section="1" data-detail-demo="true" data-note-title="SOIL PROPERTY MAP" data-note-body="Each control opens a separate field layer" data-note-detail="Layer accuracy depends on measurement density and quality">
+          <div class="story-card story-card--continuation">
+            <p class="section-kicker">A SOIL MAP IS THE FOUNDATION OF PRECISION AGRICULTURE</p>
+            <h2>PRECISION AGRICULTURE BEGINS WITH A SOIL MAP.</h2>
+            <p>Analytical results are georeferenced and converted into digital soil property layers: pH, nutrient status, soil organic matter, moisture, compaction and other attributes.</p>
+            <p>Onboard controllers use these maps for variable-rate application of fertilisers and soil amendments, as well as site-specific seeding rates and tillage depth.</p>
+            <p>Without a detailed map, machinery can position and meter inputs with high precision, but it does not know which action is required at a particular location in the field.</p>
+          </div>
+        </article>
+
+        <article class="story-step" data-scene="track" data-section="1" data-detail-demo="true" data-sampling-demo="true" data-map-title="Systematic grid sampling" data-note-title="SYSTEMATIC GRID SAMPLING" data-note-body="Approximately one composite soil sample per hectare" data-note-detail="Higher spatial resolution → more samples, time and laboratory cost">
+          <div class="story-card">
+            <p class="section-kicker">A SOIL MAP IS THE FOUNDATION OF PRECISION AGRICULTURE</p>
+            <h2>A DETAILED SOIL MAP REQUIRES MANY SAMPLES, TIME AND LABORATORY ANALYSES.</h2>
+            <p>Conventional soil mapping divides the field into a regular grid. One or more samples are collected from each grid cell, georeferenced, labelled, transported to a laboratory and analysed.</p>
+            <p>The greater the required spatial resolution, the more sampling locations, field routes, samples and analyses are needed. Cost and turnaround time rise with map detail.</p>
+          </div>
+        </article>
+
+        <article class="story-step" data-scene="track" data-section="1" data-method-demo="hyperspectral" data-note-title="HYPERSPECTRAL IMAGING" data-note-body="Rapidly reveals variability across exposed soil" data-note-detail="Crop residue, moisture and shadows confound the signal · no subsurface information">
+          <div class="story-card">
+            <p class="section-kicker">A SOIL MAP IS THE FOUNDATION OF PRECISION AGRICULTURE</p>
+            <h2>MODERN METHODS SOLVE DIFFERENT PROBLEMS. NONE PROVIDES THE COMPLETE PICTURE.</h2>
+            <p>Hyperspectral imaging rapidly reveals spatial variability across exposed soil without a full sampling grid.</p>
+            <p>But a camera cannot observe the subsurface, while moisture, shadows, stubble and crop residue confound spectral reflectance — especially under no-till. The method can delineate areas for ground verification, but it cannot produce an accurate soil property map on its own.</p>
+          </div>
+        </article>
+
+        <article class="story-step" data-scene="track" data-section="1" data-method-demo="indirect" data-note-title="PROXIMAL SOIL SENSING" data-note-body="Measures apparent electrical conductivity, moisture, penetration resistance and compaction below the surface" data-note-detail="Without laboratory calibration, this is not yet an accurate soil property map">
+          <div class="story-card">
+            <p class="section-kicker">A SOIL MAP IS THE FOUNDATION OF PRECISION AGRICULTURE</p>
+            <h2>MODERN METHODS SOLVE DIFFERENT PROBLEMS. NONE PROVIDES THE COMPLETE PICTURE.</h2>
+            <p>Proximal measurements of apparent electrical conductivity, moisture, penetration resistance and compaction provide information about soil conditions below the surface.</p>
+            <p>Yet these measurements still describe only part of the soil system. A reliable map requires them to be integrated with remote observations, field history and laboratory analyses.</p>
+          </div>
+        </article>
+
+        <article class="story-step" data-scene="track" data-section="1" data-note-title="SURVEY AT THE RIGHT TIME" data-note-body="Before machinery can enter · after planting · during crop growth" data-note-detail="Results must arrive before the agronomic decision window closes">
+          <div class="story-card">
+            <p class="section-kicker">A SOIL MAP IS THE FOUNDATION OF PRECISION AGRICULTURE</p>
+            <h2>GROWERS NEED MORE THAN A STATIC MAP. THEY NEED A FIELD MODEL THAT KEEPS IMPROVING.</h2>
+            <p>Conventional surveys depend on field access, ground machinery, manual sample collection and laboratory logistics. Results may arrive after the optimal agronomic decision window has already closed.</p>
+            <p>Growers need to be able to survey a field at almost any stage of the season — even before ground machinery can enter in spring or after the crop has been planted.</p>
+          </div>
+        </article>
+
+        <article class="story-step" data-scene="track" data-section="1" data-vegetation-demo="true" data-map-layer="vegetation" data-map-title="Crop condition · NDVI" data-note-title="CROP CONDITION · NDVI" data-note-body="Pulsing zones mark persistent growth anomalies" data-note-detail="Points mark areas that require additional ground verification">
+          <div class="story-card">
+            <p class="section-kicker">A SOIL MAP IS THE FOUNDATION OF PRECISION AGRICULTURE</p>
+            <h2>GROWERS NEED MORE THAN A STATIC MAP. THEY NEED A FIELD MODEL THAT KEEPS IMPROVING.</h2>
+            <p>During crop growth, plant condition reveals uneven development, possible nutrient deficiencies or other stress, and the areas that require further investigation.</p>
+            <p>The system must detect these zones quickly, determine where ground verification is needed, direct soil sampling and return results while crop nutrition can still be adjusted.</p>
+          </div>
+        </article>
+
+        <article class="story-step" data-scene="track" data-section="1" data-note-title="A CURRENT, AFFORDABLE MAP" data-note-body="Only the new evidence the map is missing" data-note-detail="Fewer unnecessary samples → lower cost · available throughout the season">
+          <div class="story-card">
+            <p class="section-kicker">A SOIL MAP IS THE FOUNDATION OF PRECISION AGRICULTURE</p>
+            <h2>A HIGH-ACCURACY MAP IS NOT A ONE-OFF SURVEY. IT IS A CONTINUOUS REFINEMENT PROCESS.</h2>
+            <p>A detailed map is needed continuously, but repeating a complete survey on a regular basis is too slow and expensive.</p>
+            <p>A next-generation system must use accumulated evidence and acquire only what the map is missing. Each refinement then requires fewer samples, less time and lower cost, making soil mapping more affordable while keeping the map current throughout the season.</p>
+            <p>This is essential infrastructure for the transition from automated machinery to autonomous farming.</p>
+          </div>
+        </article>
+
+        <article id="arvanos" class="story-step story-step--section-intro" data-scene="track" data-section="2" data-map-reset="true" data-map-status="hidden">
+          <div class="story-card story-card--section-intro">
+            <h2>ARVANOS IS AN AI-POWERED HARDWARE-SOFTWARE SYSTEM FOR BUILDING, CALIBRATING AND CONTINUOUSLY REFINING SOIL PROPERTY MAPS</h2>
+          </div>
+        </article>
+
+        <article class="story-step story-step--arvanos" data-scene="track" data-section="2" data-map-reset="true" data-map-status="hidden">
+          <div class="story-card">
+            <p class="section-kicker">ARVANOS</p>
+            <h2>ARVANOS COMBINES AN AI ORCHESTRATION LAYER WITH DYNAS FIELD AGENTS — AUTONOMOUS AERIAL AND GROUND PLATFORMS EQUIPPED WITH SENSORS AND ONBOARD COMPUTE.</h2>
+            <p>The AI layer analyses data and coordinates the system. Dynas agents observe the field from above, perform subsurface measurements and collect samples for laboratory calibration.</p>
+            <p>Every component operates as part of one integrated hardware-software system and continuously feeds new evidence back into the AI layer.</p>
+          </div>
+        </article>
+
+        <article class="story-step story-step--map" data-scene="map" data-refinement="1" data-map-title="Initial field model" data-section="2" data-initial-map-demo="true" data-map-layer="moisture" data-note-title="INITIAL ARVANOS MAP" data-note-body="Field history · NDVI · yield data · previous laboratory analyses" data-note-detail="The accuracy of each layer depends on the available source data">
+          <div class="story-card">
+            <p class="section-kicker">ARVANOS</p>
+            <h2>ARVANOS BUILDS THE INITIAL FIELD MAP.</h2>
+            <p>The system integrates field history, historical NDVI, yield data, previous laboratory analyses and other available sources.</p>
+            <p>It uses this evidence to build an initial map and determine where the data is already sufficient and which areas require additional investigation.</p>
+          </div>
+        </article>
+
+        <article class="story-step story-step--map" data-scene="map" data-refinement="2" data-map-title="Hyperspectral refinement" data-section="2" data-method-demo="maya" data-scene-detail-level="3">
+          <div class="story-card">
+            <p class="section-kicker">ARVANOS</p>
+            <h2>DYNAS MAYA SEES THE FIELD FROM ABOVE.</h2>
+            <p>Maya is a lightweight aerial field agent in the Dynas line. It surveys the field, acquires current hyperspectral imagery and detects surface variability.</p>
+            <p>The AI layer analyses the data in real time and, when needed, retasks Maya to survey selected areas at higher spatial resolution. Maya can repeat surveys throughout the growing season, detecting new anomalies and areas that require refinement. In the future, Maya will also enable early detection of crop diseases and pests.</p>
+          </div>
+        </article>
+
+        <article class="story-step story-step--map" data-scene="map" data-refinement="2" data-map-title="Subsurface verification locations" data-section="2" data-method-demo="maya" data-herus-targets-demo="true" data-note-title="LOCATIONS FOR SUBSURFACE VERIFICATION" data-note-body="Selected from anomalies across all available layers" data-note-detail="More measurements where they reduce uncertainty the most">
+          <div class="story-card">
+            <p class="section-kicker">ARVANOS</p>
+            <h2>THE AI LAYER SELECTS WHERE SUBSURFACE VERIFICATION IS NEEDED.</h2>
+            <p>Maya refines the surface view of the field. The AI layer compares these observations with historical layers and selects the most informative locations for subsurface measurements.</p>
+            <p>These locations are automatically converted into a field task. The agent receives coordinates and a route to the selected points without blanket traffic by ground machinery across the field.</p>
+          </div>
+        </article>
+
+        <article class="story-step story-step--map" data-scene="map" data-refinement="3" data-map-title="Subsurface verification" data-section="2" data-herus-measurement-demo="true" data-scene-detail-level="3" data-note-title="HERUS DATA" data-note-body="Moisture · apparent electrical conductivity · penetration resistance · compaction" data-note-detail="Subsurface measurements refine what Maya cannot observe">
+          <div class="story-card">
+            <p class="section-kicker">ARVANOS</p>
+            <h2>DYNAS HERUS EXAMINES THE SOIL BELOW THE SURFACE.</h2>
+            <p>Herus is the heavy ground field agent in the Dynas line. It drills, measures moisture, apparent electrical conductivity, penetration resistance and compaction, determines the depth of the plough pan, and performs spectral analysis of soil extracted from the borehole.</p>
+          </div>
+        </article>
+
+        <article class="story-step story-step--map" data-scene="map" data-refinement="3" data-map-title="Laboratory calibration samples" data-section="2" data-herus-measurement-demo="true" data-lab-control-demo="true" data-scene-detail-level="3" data-note-title="LABORATORY CALIBRATION SAMPLES" data-note-body="Samples from three directed locations are sent to the laboratory" data-note-detail="Selected for calibration, not from a regular grid">
+          <div class="story-card story-card--continuation">
+            <p class="section-kicker">ARVANOS</p>
+            <h2>DYNAS HERUS EXAMINES THE SOIL BELOW THE SURFACE.</h2>
+            <p>After analysing the field measurements collected by Herus, the system identifies the minimum set of sampling locations required for laboratory calibration.</p>
+            <p>Herus collects the samples and returns them to base for labelling and transfer to the laboratory.</p>
+          </div>
+        </article>
+
+        <article class="story-step story-step--map" data-scene="map" data-refinement="4" data-map-title="Laboratory calibration" data-section="2" data-clean-map-demo="true" data-scene-detail-level="3" data-note-title="MAP AFTER CALIBRATION" data-note-body="Indirect signals are tied to quantitative laboratory values" data-note-detail="The map becomes validated and calibrated">
+          <div class="story-card">
+            <p class="section-kicker">ARVANOS</p>
+            <h2>LABORATORY RESULTS CALIBRATE THE MAP.</h2>
+            <p>Arvanos correlates laboratory results with remote and proximal measurements. This ties indirect signals to quantitative reference values and turns the map into a calibrated field model.</p>
+          </div>
+        </article>
+
+        <article class="story-step story-step--map" data-scene="map" data-refinement="4" data-map-title="Fewer unnecessary samples" data-section="2" data-clean-map-demo="true" data-cost-comparison-demo="true" data-scene-detail-level="3">
+          <div class="story-card">
+            <p class="section-kicker">ARVANOS</p>
+            <h2>FEWER UNNECESSARY SAMPLES. LOWER COST. FASTER DECISIONS. A CURRENT MAP THROUGHOUT THE SEASON.</h2>
+            <p>Arvanos directs laboratory analysis only to locations where it adds new information to the map, integrating remote and proximal surveys into one managed cycle. This reduces unnecessary samples, field routes and repeat surveys, substantially lowers mapping cost, and delivers results while there is still time to adjust an agronomic decision.</p>
+          </div>
+        </article>
+
+        <article class="story-step story-step--map" data-scene="map" data-refinement="4" data-map-title="Continuous refinement" data-section="2" data-clean-map-demo="true" data-ai-core-demo="true" data-scene-detail-level="3">
+          <div class="story-card">
+            <p class="section-kicker">ARVANOS</p>
+            <h2>EVERY STAGE IS COORDINATED IN REAL TIME BY THE ARVANOS AI ORCHESTRATION LAYER.</h2>
+            <p>Every new data layer returns to the system. Arvanos updates the map, shows where confidence is already high and where further verification is needed, and adjusts the next tasks for Maya and Herus.</p>
+            <p>The initial map progressively becomes validated and calibrated — and continues to improve throughout the season.</p>
+          </div>
+        </article>
+
+        <article id="system" class="story-step story-step--section-intro" data-scene="map" data-refinement="4" data-map-title="Current map" data-section="2" data-clean-map-demo="true" data-scene-detail-level="3">
+          <div class="story-card story-card--section-intro story-card--final">
+            <p class="brand-line">Maya sees. Herus does. And Arvanos knows.</p>
+          </div>
+        </article>
+      </div>
+    </main>
+
+    <nav class="story-page-controls" aria-label="Story page navigation">
+      <button class="story-page-button story-page-button--previous" type="button" data-story-direction="-1" aria-label="Previous page">
+        <span aria-hidden="true"></span>
+      </button>
+      <button class="story-page-button story-page-button--next" type="button" data-story-direction="1" aria-label="Next page">
+        <span aria-hidden="true"></span>
+      </button>
+    </nav>
+
+    <script src="./assets/field-motion-track.js"></script>
+    <script src="./assets/field-plan-reconstructed.js"></script>
+    <script src="./language.js?v=20260819-release2"></script>
+    <script src="./field-transition-demo.js?v=20260819-release1"></script>
+  </body>
+</html>

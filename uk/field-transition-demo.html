@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#eef0dc" />
+    <meta name="description" content="Arvanos — програмно-апаратний комплекс на основі ШІ для створення, калібрування й безперервного уточнення карти ґрунту." />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Arvanos" />
+    <meta property="og:locale" content="uk_UA" />
+    <meta property="og:locale:alternate" content="en_GB" />
+    <meta property="og:title" content="Arvanos — карта ґрунту, що постійно уточнюється" />
+    <meta property="og:description" content="ШІ-система для створення, калібрування й безперервного уточнення карт властивостей ґрунту." />
+    <meta property="og:image" content="https://pirsua.github.io/arvanos-site/assets/og-arvanos.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Точне землеробство Arvanos на тлі аерознімка полів" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <title>Arvanos — карта ґрунту, що постійно уточнюється</title>
+    <link rel="canonical" href="https://pirsua.github.io/arvanos-site/uk/field-transition-demo.html" />
+    <link rel="alternate" hreflang="en" href="https://pirsua.github.io/arvanos-site/field-transition-demo.html" />
+    <link rel="alternate" hreflang="uk" href="https://pirsua.github.io/arvanos-site/uk/field-transition-demo.html" />
+    <link rel="alternate" hreflang="x-default" href="https://pirsua.github.io/arvanos-site/field-transition-demo.html" />
+    <link rel="icon" href="../assets/arvanos-favicon-a.svg?v=20260819-a2" type="image/svg+xml" />
+    <link rel="stylesheet" href="../field-transition-demo.css?v=20260819-release1" />
+  </head>
+  <body>
+    <a class="skip-link" href="#start">Перейти до змісту</a>
+    <header class="site-header">
+      <a class="wordmark" href="#start" aria-label="Arvanos — на початок">
+        <img src="../assets/arvanos-logo-primary.svg?v=20260818-bold7" alt="" />
+      </a>
+      <nav id="quick-nav" class="quick-nav" aria-label="Швидка навігація">
+        <a href="#precision">Точне землеробство</a>
+        <a href="#arvanos">Як працює Arvanos</a>
+        <a href="./project.html#project">Про проєкт</a>
+        <a href="./project.html#team">Про команду</a>
+        <a href="./partnership.html">Партнерство</a>
+        <a class="language-switch" href="../field-transition-demo.html" hreflang="en" lang="en" data-language-switch data-language-target="en">EN</a>
+      </nav>
+      <button class="menu-button" type="button" aria-label="Відкрити навігацію" aria-controls="quick-nav" aria-expanded="false">Меню</button>
+    </header>
+
+    <main id="start" class="experience" tabindex="0" aria-label="Історія Arvanos">
+      <h1 class="visually-hidden">Arvanos — точне землеробство та картування ґрунту</h1>
+      <div class="field-stage">
+        <video id="field-video" class="source-video" muted playsinline loop autoplay preload="auto" poster="../assets/field-reference-start.png" aria-hidden="true">
+          <source src="../assets/arvanos-field-loop-smooth.mp4" type="video/mp4" />
+        </video>
+        <div class="video-shade" aria-hidden="true"></div>
+
+        <svg id="field-object" class="field-object" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <defs>
+            <pattern id="field-map-grid-pattern" width="42" height="42" patternUnits="userSpaceOnUse">
+              <path d="M 42 0 L 0 0 0 42" class="field-grid-line" />
+            </pattern>
+            <pattern id="field-detail-pattern" width="92" height="92" patternUnits="userSpaceOnUse" patternTransform="rotate(-18)">
+              <circle cx="18" cy="22" r="4" class="field-data-dot" />
+              <circle cx="70" cy="62" r="2.5" class="field-data-dot field-data-dot--soft" />
+              <path d="M0 74 C24 50 62 52 92 28" class="field-data-line" />
+            </pattern>
+            <linearGradient id="field-map-gradient" x1="0" y1="1" x2="1" y2="0">
+              <stop offset="0" stop-color="#5d7b37" />
+              <stop offset=".36" stop-color="#b8dc65" />
+              <stop offset=".68" stop-color="#eadc77" />
+              <stop offset="1" stop-color="#cf8d54" />
+            </linearGradient>
+          </defs>
+          <path id="field-map-base" class="field-map-base" />
+          <path id="field-map-zones" class="field-map-zones" />
+          <image class="field-layer-image is-current" width="1024" height="1024" preserveAspectRatio="none" />
+          <image class="field-layer-image" width="1024" height="1024" preserveAspectRatio="none" />
+          <image class="method-overlay-image method-overlay-image--hyperspectral" href="../assets/field-map-layers/method-overlays/hyperspectral-defect-mask.png" width="1024" height="1024" preserveAspectRatio="none" />
+          <image class="method-overlay-image method-overlay-image--indirect" href="../assets/field-map-layers/method-overlays/indirect-survey-mask.png" width="1024" height="1024" preserveAspectRatio="none" />
+          <image class="vegetation-anomaly-image" href="../assets/field-map-layers/vegetation-anomalies.png" width="1024" height="1024" preserveAspectRatio="none" />
+          <g class="vegetation-targets-layer">
+            <g class="vegetation-target" transform="translate(488 417)"><circle r="21" /><circle class="vegetation-target__core" r="8" /><text y="6">1</text></g>
+            <g class="vegetation-target" transform="translate(245 570)"><circle r="21" /><circle class="vegetation-target__core" r="8" /><text y="6">2</text></g>
+            <g class="vegetation-target" transform="translate(880 304)"><circle r="21" /><circle class="vegetation-target__core" r="8" /><text y="6">3</text></g>
+          </g>
+          <g class="herus-targets-layer"></g>
+          <g class="lab-control-targets-layer" aria-hidden="true">
+            <g class="lab-control-target" transform="translate(448 520)"><circle class="lab-control-target__halo" r="16" /><circle class="lab-control-target__core" r="5.5" /></g>
+            <g class="lab-control-target" transform="translate(709 409)"><circle class="lab-control-target__halo" r="16" /><circle class="lab-control-target__core" r="5.5" /></g>
+            <g class="lab-control-target" transform="translate(612 548)"><circle class="lab-control-target__halo" r="16" /><circle class="lab-control-target__core" r="5.5" /></g>
+          </g>
+          <image class="sampling-grid-image is-current" width="1024" height="1024" preserveAspectRatio="none" />
+          <image class="sampling-grid-image" width="1024" height="1024" preserveAspectRatio="none" />
+          <path id="field-map-detail" class="field-map-detail" />
+          <path id="field-outline" class="field-outline" />
+          <path id="field-map-grid" class="field-map-grid" />
+        </svg>
+
+        <aside class="map-status" aria-label="Основні шари карти поля">
+          <p class="map-status__eyebrow">Шари карти</p>
+          <ul class="map-layers" aria-label="Блоки даних карти">
+            <li><button class="map-layer-button" type="button" data-map-layer-chip="moisture" aria-pressed="true">Вологість</button></li>
+            <li><button class="map-layer-button" type="button" data-map-layer-chip="nutrition" aria-pressed="false">Живлення · NPK</button></li>
+            <li><button class="map-layer-button" type="button" data-map-layer-chip="organic" aria-pressed="false">Органічна речовина</button></li>
+            <li><button class="map-layer-button" type="button" data-map-layer-chip="ph" aria-pressed="false">Кислотність · pH</button></li>
+            <li><button class="map-layer-button" type="button" data-map-layer-chip="compaction" aria-pressed="false">Ущільнення</button></li>
+            <li><button class="map-layer-button" type="button" data-map-layer-chip="vegetation" aria-pressed="false">Стан рослин · NDVI</button></li>
+          </ul>
+          <div class="sampling-detail" aria-label="Деталізація карти">
+            <p class="map-status__eyebrow">ТОЧНІСТЬ</p>
+            <div id="detail-stepper" class="detail-stepper" role="group" aria-label="Точність карти">
+              <span class="detail-stepper__track" aria-hidden="true"><span></span></span>
+              <button class="detail-step-button" type="button" data-detail-level="0" aria-pressed="false"><span class="detail-step-button__dot" aria-hidden="true"></span><span>Базова</span></button>
+              <button class="detail-step-button" type="button" data-detail-level="1" aria-pressed="false"><span class="detail-step-button__dot" aria-hidden="true"></span><span>Звичайна</span></button>
+              <button class="detail-step-button" type="button" data-detail-level="2" aria-pressed="false"><span class="detail-step-button__dot" aria-hidden="true"></span><span>Детальна</span></button>
+              <button class="detail-step-button" type="button" data-detail-level="3" aria-pressed="false"><span class="detail-step-button__dot" aria-hidden="true"></span><span>Висока</span></button>
+            </div>
+            <div class="sampling-detail__readout">
+              <strong><b id="sampling-sample-count"></b><span id="sampling-sample-unit">Без сітки проб</span></strong>
+            </div>
+          </div>
+        </aside>
+        <aside id="scene-note" class="scene-note" aria-live="polite"></aside>
+        <aside class="maya-note" aria-label="Результат обстеження Dynas Maya">
+          <p class="maya-note__title">ДАНІ MAYA ПІСЛЯ ФІЛЬТРАЦІЇ</p>
+          <p>Деталізацію підвищено · частину поверхневих перешкод відфільтровано</p>
+          <p class="maya-note__masked">Залишкові перешкоди ще потребують перевірки й калібрування</p>
+        </aside>
+        <aside class="cost-comparison" aria-label="Порівняння кількості лабораторних проб">
+          <p class="cost-comparison__title">КІЛЬКІСТЬ ПРОБ</p>
+          <div class="cost-comparison__stage">
+            <div class="cost-comparison__item cost-comparison__item--traditional">
+              <strong>26</strong>
+              <span>ПРОБ · ДЕТАЛЬНА КАРТА</span>
+            </div>
+            <div class="cost-comparison__item cost-comparison__item--arvanos">
+              <strong>3</strong>
+              <span>ПРОБИ · ВИСОКОТОЧНА КАРТА</span>
+            </div>
+          </div>
+        </aside>
+        <aside class="ai-core-note" aria-label="Онлайн-цикл координації Arvanos">
+          <p class="ai-core-note__title"><span aria-hidden="true"></span>ОНЛАЙН · ШІ-ЯДРО ARVANOS</p>
+          <div class="ai-core-flow">
+            <p class="ai-core-step ai-core-step--maya">MAYA · ПОВЕРХНЕВІ ДАНІ</p>
+            <p class="ai-core-step ai-core-step--herus">HERUS · ГЛИБИННІ ВИМІРЮВАННЯ</p>
+            <p class="ai-core-step ai-core-step--lab">ЛАБОРАТОРІЯ · КАЛІБРУВАННЯ</p>
+            <p class="ai-core-step ai-core-step--core">ARVANOS · АНАЛІЗ І ОНОВЛЕННЯ</p>
+            <p class="ai-core-step ai-core-step--map">КАРТУ ОНОВЛЕНО</p>
+            <p class="ai-core-step ai-core-step--task">НОВЕ ЗАВДАННЯ → MAYA / HERUS</p>
+          </div>
+        </aside>
+      </div>
+
+      <div class="story-flow">
+        <article id="precision" class="story-step story-step--section-intro" data-scene="track" data-section="1">
+          <div class="story-card story-card--section-intro">
+            <h2>КАРТА ҐРУНТУ — ОСНОВА ТОЧНОГО ЗЕМЛЕРОБСТВА</h2>
+          </div>
+        </article>
+
+        <article class="story-step" data-scene="track" data-section="1">
+          <div class="story-card">
+            <p class="section-kicker">КАРТА ҐРУНТУ — ОСНОВА ТОЧНОГО ЗЕМЛЕРОБСТВА</p>
+            <h2>ТОЧНЕ ЗЕМЛЕРОБСТВО ПОЧИНАЄТЬСЯ З КАРТИ ҐРУНТУ.</h2>
+            <p>Сільське господарство входить в епоху точного землеробства.</p>
+            <p>Супутники, дрони, автопілоти, робототехніка та ШІ вже дають змогу керувати полем точніше, швидше та з меншою кількістю ручних рішень.</p>
+            <p>Але вся ця точність спирається на один фундаментальний шар: детальну карту ґрунту.</p>
+          </div>
+        </article>
+
+        <article class="story-step" data-scene="transition" data-refinement="0" data-map-title="Цифрові шари ґрунту" data-section="1" data-detail-demo="true" data-note-title="КАРТА ВЛАСТИВОСТЕЙ ҐРУНТУ" data-note-body="Кожна кнопка відкриває окремий шар поля" data-note-detail="Точність шару залежить від щільності та якості вимірювань">
+          <div class="story-card story-card--continuation">
+            <p class="section-kicker">КАРТА ҐРУНТУ — ОСНОВА ТОЧНОГО ЗЕМЛЕРОБСТВА</p>
+            <h2>ТОЧНЕ ЗЕМЛЕРОБСТВО ПОЧИНАЄТЬСЯ З КАРТИ ҐРУНТУ.</h2>
+            <p>Результати аналізу прив’язуються до GPS-координат і перетворюються на цифрові шари: pH, вміст елементів живлення, органічна речовина, вологість, ущільнення та інші властивості ґрунту.</p>
+            <p>Бортовий комп’ютер використовує карту для диференційованого внесення добрив і меліорантів, вибору норми висіву та глибини обробітку.</p>
+            <p>Без детальної карти техніка здатна рухатися й дозувати з високою точністю, але не знає, яка дія потрібна в конкретній точці поля.</p>
+          </div>
+        </article>
+
+        <article class="story-step" data-scene="track" data-section="1" data-detail-demo="true" data-sampling-demo="true" data-map-title="Традиційна сітка проб" data-note-title="ТРАДИЦІЙНА СІТКА ПРОБ" data-note-body="Приблизно одна композитна проба на гектар" data-note-detail="Вища деталізація → більше проб, часу й лабораторних витрат">
+          <div class="story-card">
+            <p class="section-kicker">КАРТА ҐРУНТУ — ОСНОВА ТОЧНОГО ЗЕМЛЕРОБСТВА</p>
+            <h2>ДЕТАЛЬНА КАРТА ҐРУНТУ ПОТРЕБУЄ БАГАТО ПРОБ, ЧАСУ Й ЛАБОРАТОРНИХ АНАЛІЗІВ.</h2>
+            <p>За традиційного картування поле розбивають на сітку. У кожній комірці відбирають одну або кілька проб, прив’язують їх до координат, маркують, доставляють у лабораторію та очікують результати.</p>
+            <p>Що вища потрібна деталізація карти, то більше точок відбору, польових маршрутів, зразків та аналізів. Разом із точністю зростають вартість і тривалість робіт.</p>
+          </div>
+        </article>
+
+        <article class="story-step" data-scene="track" data-section="1" data-method-demo="hyperspectral" data-note-title="ГІПЕРСПЕКТРАЛЬНИЙ АНАЛІЗ" data-note-body="Швидко показує неоднорідності відкритої поверхні" data-note-detail="Рослинні рештки, волога й тіні спотворюють сигнал · глибина недоступна">
+          <div class="story-card">
+            <p class="section-kicker">КАРТА ҐРУНТУ — ОСНОВА ТОЧНОГО ЗЕМЛЕРОБСТВА</p>
+            <h2>СУЧАСНІ МЕТОДИ ВИРІШУЮТЬ РІЗНІ ЗАВДАННЯ. ЖОДЕН НЕ ДАЄ ПОВНОЇ КАРТИНИ.</h2>
+            <p>Гіперспектральний аналіз швидко знаходить неоднорідності відкритої поверхні без суцільної сітки проб.</p>
+            <p>Проте камера не бачить ґрунт у глибину, а вологість, тіні, стерня й рослинні рештки спотворюють сигнал — особливо за no-till. Тому метод визначає зони для перевірки, але сам по собі не дає точної карти ґрунту.</p>
+          </div>
+        </article>
+
+        <article class="story-step" data-scene="track" data-section="1" data-method-demo="indirect" data-note-title="НЕПРЯМІ ПОЛЬОВІ ВИМІРЮВАННЯ" data-note-body="Вимірюють електропровідність, вологість, опір та ущільнення в глибину" data-note-detail="Без лабораторного калібрування це ще не точна карта властивостей">
+          <div class="story-card">
+            <p class="section-kicker">КАРТА ҐРУНТУ — ОСНОВА ТОЧНОГО ЗЕМЛЕРОБСТВА</p>
+            <h2>СУЧАСНІ МЕТОДИ ВИРІШУЮТЬ РІЗНІ ЗАВДАННЯ. ЖОДЕН НЕ ДАЄ ПОВНОЇ КАРТИНИ.</h2>
+            <p>Вимірювання електропровідності, вологості, опору та ущільнення дають змогу побачити властивості ґрунту в глибину.</p>
+            <p>Але й вони описують лише частину його стану. Для надійної карти ці дані необхідно зіставити з дистанційним спостереженням, історією поля та лабораторними аналізами.</p>
+          </div>
+        </article>
+
+        <article class="story-step" data-scene="track" data-section="1" data-note-title="ОБСТЕЖЕННЯ У ПОТРІБНИЙ МОМЕНТ" data-note-body="До виходу техніки · після посіву · під час вегетації" data-note-detail="Результат потрібен до завершення вікна агрономічного рішення">
+          <div class="story-card">
+            <p class="section-kicker">КАРТА ҐРУНТУ — ОСНОВА ТОЧНОГО ЗЕМЛЕРОБСТВА</p>
+            <h2>АГРАРІЮ ПОТРІБНА НЕ СТАТИЧНА КАРТА, А КАРТИНА ПОЛЯ, ЩО ПОСТІЙНО УТОЧНЮЄТЬСЯ.</h2>
+            <p>Традиційне обстеження залежить від доступу до поля, роботи наземної техніки, ручного відбору та лабораторної логістики. Результат може надійти тоді, коли оптимальне вікно для агрономічного рішення вже закрилося.</p>
+            <p>Аграрію потрібна можливість обстежувати поле практично на будь-якому етапі сезону — навіть коли навесні на нього ще не може вийти наземна техніка або коли культуру вже посіяно.</p>
+          </div>
+        </article>
+
+        <article class="story-step" data-scene="track" data-section="1" data-vegetation-demo="true" data-map-layer="vegetation" data-map-title="Стан рослин · NDVI" data-note-title="СТАН РОСЛИН · NDVI" data-note-body="Пульсуючі зони показують стійкі аномалії розвитку" data-note-detail="Точки позначають ділянки, які потрібно перевірити додатково">
+          <div class="story-card">
+            <p class="section-kicker">КАРТА ҐРУНТУ — ОСНОВА ТОЧНОГО ЗЕМЛЕРОБСТВА</p>
+            <h2>АГРАРІЮ ПОТРІБНА НЕ СТАТИЧНА КАРТА, А КАРТИНА ПОЛЯ, ЩО ПОСТІЙНО УТОЧНЮЄТЬСЯ.</h2>
+            <p>Під час вегетації стан рослин показує, де поле розвивається нерівномірно, де можуть проявлятися ознаки дефіциту живлення або іншого стресу та де потрібне додаткове обстеження.</p>
+            <p>Система має швидко знаходити такі зони, визначати, де потрібне уточнення, спрямовувати відбір проб і повертати результат тоді, коли ще можна скоригувати живлення рослин.</p>
+          </div>
+        </article>
+
+        <article class="story-step" data-scene="track" data-section="1" data-note-title="ДОСТУПНА Й АКТУАЛЬНА КАРТА" data-note-body="Лише ті нові дані, яких бракує карті" data-note-detail="Менше зайвих проб → нижча вартість · доступність протягом сезону">
+          <div class="story-card">
+            <p class="section-kicker">КАРТА ҐРУНТУ — ОСНОВА ТОЧНОГО ЗЕМЛЕРОБСТВА</p>
+            <h2>ТОЧНА КАРТА — НЕ РАЗОВЕ ОБСТЕЖЕННЯ. ЦЕ БЕЗПЕРЕРВНЕ УТОЧНЕННЯ.</h2>
+            <p>Детальна карта потрібна постійно, але регулярно повторювати повне обстеження занадто дорого й повільно.</p>
+            <p>Система наступного покоління має використовувати накопичені дані й збирати лише те, чого бракує карті. Так кожне уточнення потребує менше проб, часу й витрат, картування стає доступнішим за вартістю, а актуальна карта — доступною протягом сезону.</p>
+            <p>Це необхідна інфраструктура для переходу від автоматизованої техніки до автономного землеробства.</p>
+          </div>
+        </article>
+
+        <article id="arvanos" class="story-step story-step--section-intro" data-scene="track" data-section="2" data-map-reset="true" data-map-status="hidden">
+          <div class="story-card story-card--section-intro">
+            <h2>ARVANOS — ПРОГРАМНО-АПАРАТНИЙ КОМПЛЕКС НА ОСНОВІ ШІ ДЛЯ СТВОРЕННЯ, КАЛІБРУВАННЯ Й БЕЗПЕРЕРВНОГО УТОЧНЕННЯ КАРТИ ҐРУНТУ</h2>
+          </div>
+        </article>
+
+        <article class="story-step story-step--arvanos" data-scene="track" data-section="2" data-map-reset="true" data-map-status="hidden">
+          <div class="story-card">
+            <p class="section-kicker">ARVANOS</p>
+            <h2>ARVANOS ОБ’ЄДНУЄ ШІ-ЯДРО ТА ПОЛЬОВИХ АГЕНТІВ DYNAS — ДРОНИ ІЗ СЕНСОРАМИ Й БОРТОВИМИ ОБЧИСЛЮВАЛЬНИМИ МОДУЛЯМИ.</h2>
+            <p>ШІ-ядро аналізує дані й керує роботою системи. Агенти Dynas спостерігають поле згори, виконують вимірювання в глибину та відбирають контрольні зразки.</p>
+            <p>Усі компоненти працюють як єдиний програмно-апаратний комплекс і постійно передають нові дані в ядро.</p>
+          </div>
+        </article>
+
+        <article class="story-step story-step--map" data-scene="map" data-refinement="1" data-map-title="Початкова карта" data-section="2" data-initial-map-demo="true" data-map-layer="moisture" data-note-title="ПОЧАТКОВА КАРТА ARVANOS" data-note-body="Історія поля · NDVI · урожайність · попередні аналізи" data-note-detail="Точність кожного шару залежить від наявних вихідних даних">
+          <div class="story-card">
+            <p class="section-kicker">ARVANOS</p>
+            <h2>ARVANOS ФОРМУЄ ПОЧАТКОВУ КАРТУ ПОЛЯ.</h2>
+            <p>Система об’єднує історію поля, історичні дані вегетаційного індексу NDVI, урожайність, попередні лабораторні аналізи та інші доступні джерела.</p>
+            <p>На їхній основі система формує початкову карту й визначає, де даних уже достатньо, а які ділянки потребують додаткового обстеження.</p>
+          </div>
+        </article>
+
+        <article class="story-step story-step--map" data-scene="map" data-refinement="2" data-map-title="Гіперспектральне уточнення" data-section="2" data-method-demo="maya" data-scene-detail-level="3">
+          <div class="story-card">
+            <p class="section-kicker">ARVANOS</p>
+            <h2>DYNAS MAYA БАЧИТЬ ПОЛЕ ЗГОРИ.</h2>
+            <p>Maya — легкий польовий агент Dynas. Вона облітає поле, збирає актуальні гіперспектральні дані та виявляє поверхневі неоднорідності.</p>
+            <p>ШІ-ядро аналізує отримані дані в режимі онлайн і за потреби спрямовує Maya на повторне обстеження окремих ділянок із вищою деталізацією. Maya може повторювати обльоти протягом вегетації, виявляючи нові неоднорідності й ділянки для уточнення. У перспективі за допомогою Maya система зможе своєчасно розпізнавати хвороби та шкідників.</p>
+          </div>
+        </article>
+
+        <article class="story-step story-step--map" data-scene="map" data-refinement="2" data-map-title="Точки перевірки" data-section="2" data-method-demo="maya" data-herus-targets-demo="true" data-note-title="ТОЧКИ ДЛЯ ГЛИБИННОЇ ПЕРЕВІРКИ" data-note-body="Їх обрано за аномаліями всіх доступних шарів" data-note-detail="Більше вимірювань там, де вони найбільше зменшують невизначеність">
+          <div class="story-card">
+            <p class="section-kicker">ARVANOS</p>
+            <h2>ШІ-ЯДРО ВИЗНАЧАЄ, ДЕ ПОТРІБНА ПЕРЕВІРКА В ГЛИБИНУ.</h2>
+            <p>Дані Maya уточнюють поверхневу картину поля. ШІ-ядро зіставляє їх з історичними шарами й визначає найінформативніші точки для глибинних вимірювань.</p>
+            <p>Ці точки автоматично перетворюються на польове завдання для глибинної перевірки. Агент отримує координати й маршрут до визначених точок без суцільного проїзду наземної техніки полем.</p>
+          </div>
+        </article>
+
+        <article class="story-step story-step--map" data-scene="map" data-refinement="3" data-map-title="Перевірка в глибину" data-section="2" data-herus-measurement-demo="true" data-scene-detail-level="3" data-note-title="ДАНІ HERUS" data-note-body="Вологість · електропровідність · опір · ущільнення" data-note-detail="Глибинні вимірювання уточнюють те, чого не бачить Maya">
+          <div class="story-card">
+            <p class="section-kicker">ARVANOS</p>
+            <h2>DYNAS HERUS ПЕРЕВІРЯЄ ҐРУНТ У ГЛИБИНУ.</h2>
+            <p>Herus — важкий польовий агент Dynas. Він бурить, вимірює вологість, електропровідність, опір і ущільнення, визначає глибину плужної підошви та виконує спектральний аналіз ґрунту, відібраного зі свердловини.</p>
+          </div>
+        </article>
+
+        <article class="story-step story-step--map" data-scene="map" data-refinement="3" data-map-title="Контрольні зразки" data-section="2" data-herus-measurement-demo="true" data-lab-control-demo="true" data-scene-detail-level="3" data-note-title="КОНТРОЛЬНІ ЗРАЗКИ" data-note-body="Зразки з трьох цільових точок передаються до лабораторії" data-note-detail="Їх обрано для калібрування, а не за рівномірною сіткою">
+          <div class="story-card story-card--continuation">
+            <p class="section-kicker">ARVANOS</p>
+            <h2>DYNAS HERUS ПЕРЕВІРЯЄ ҐРУНТ У ГЛИБИНУ.</h2>
+            <p>Після аналізу польових вимірювань, виконаних Herus, система визначає мінімально необхідний набір контрольних точок для лабораторного аналізу.</p>
+            <p>Herus відбирає контрольні зразки та доставляє їх на базу для маркування й передавання в лабораторію.</p>
+          </div>
+        </article>
+
+        <article class="story-step story-step--map" data-scene="map" data-refinement="4" data-map-title="Лабораторне калібрування" data-section="2" data-clean-map-demo="true" data-scene-detail-level="3" data-note-title="КАРТА ПІСЛЯ КАЛІБРУВАННЯ" data-note-body="Непрямі сигнали пов’язано з точними лабораторними значеннями" data-note-detail="Карта стає перевіреною та каліброваною">
+          <div class="story-card">
+            <p class="section-kicker">ARVANOS</p>
+            <h2>ЛАБОРАТОРІЯ КАЛІБРУЄ КАРТУ.</h2>
+            <p>Arvanos зіставляє лабораторні результати з дистанційними та польовими вимірюваннями. Так непрямі вимірювання пов’язуються з точними значеннями, а карта стає каліброваною.</p>
+          </div>
+        </article>
+
+        <article class="story-step story-step--map" data-scene="map" data-refinement="4" data-map-title="Менше зайвих проб" data-section="2" data-clean-map-demo="true" data-cost-comparison-demo="true" data-scene-detail-level="3">
+          <div class="story-card">
+            <p class="section-kicker">ARVANOS</p>
+            <h2>МЕНШЕ ЗАЙВИХ ПРОБ. НИЖЧА ВАРТІСТЬ. ШВИДШЕ РІШЕННЯ. АКТУАЛЬНА КАРТА ПРОТЯГОМ СЕЗОНУ.</h2>
+            <p>Arvanos спрямовує лабораторний аналіз лише туди, де він додає карті нову інформацію, і об’єднує непрямі обстеження в єдиний керований цикл. Це дає змогу скоротити кількість зайвих проб, польових маршрутів і повторних досліджень, суттєво знизити вартість картування та отримати результат тоді, коли ще можна скоригувати агрономічне рішення.</p>
+          </div>
+        </article>
+
+        <article class="story-step story-step--map" data-scene="map" data-refinement="4" data-map-title="Безперервне уточнення" data-section="2" data-clean-map-demo="true" data-ai-core-demo="true" data-scene-detail-level="3">
+          <div class="story-card">
+            <p class="section-kicker">ARVANOS</p>
+            <h2>УСІ ЕТАПИ ОНЛАЙН КООРДИНУЄ ШІ-ЯДРО ARVANOS.</h2>
+            <p>Кожен новий шар даних повертається в систему. Arvanos оновлює карту, показує, де вона вже надійна, а де потребує уточнення, і коригує наступні завдання для Maya та Herus.</p>
+            <p>Так початкова карта послідовно перетворюється на перевірену та калібровану — і продовжує уточнюватися протягом сезону.</p>
+          </div>
+        </article>
+
+        <article id="system" class="story-step story-step--section-intro" data-scene="map" data-refinement="4" data-map-title="Актуальна карта" data-section="2" data-clean-map-demo="true" data-scene-detail-level="3">
+          <div class="story-card story-card--section-intro story-card--final">
+            <p class="brand-line">Maya sees. Herus does. And Arvanos knows.</p>
+          </div>
+        </article>
+      </div>
+    </main>
+
+    <nav class="story-page-controls" aria-label="Перехід між сторінками історії">
+      <button class="story-page-button story-page-button--previous" type="button" data-story-direction="-1" aria-label="Попередня сторінка">
+        <span aria-hidden="true"></span>
+      </button>
+      <button class="story-page-button story-page-button--next" type="button" data-story-direction="1" aria-label="Наступна сторінка">
+        <span aria-hidden="true"></span>
+      </button>
+    </nav>
+
+    <script src="../assets/field-motion-track.js"></script>
+    <script src="../assets/field-plan-reconstructed.js"></script>
+    <script src="../language.js?v=20260819-release2"></script>
+    <script src="../field-transition-demo.js?v=20260819-release1"></script>
+  </body>
+</html>
