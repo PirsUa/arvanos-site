@@ -494,6 +494,7 @@ body.map-status-enabled:not(.section-intro-active) .map-status.is-visible { opac
 .scene-note__detail,
 .maya-note__masked { color: #ffe0a8; }
 body.map-ready.scene-note-mode .scene-note { opacity: 1; transform: none; }
+body.future-action-mode.scene-note-mode .scene-note { opacity: 1; transform: none; }
 body.map-ready.method-maya-active:not(.herus-targets-mode) .maya-note { opacity: 1; transform: none; }
 body.map-layer-vegetation-active .maya-note__masked { display: none; }
 body.map-layer-compaction-active .maya-note { opacity: 0 !important; }

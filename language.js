@@ -53,7 +53,7 @@
   const language = preference || (browserLanguage === 'uk' || browserLanguage.startsWith('uk-') ? 'uk' : 'en');
 
   if (document.body.hasAttribute('data-language-router')) {
-    const destination = `${languageRoot(language)}field-transition-demo`;
+    const destination = `${languageRoot(language)}field-transition-demo.html`;
     location.replace(destination);
     return;
   }
