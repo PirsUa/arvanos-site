@@ -561,6 +561,7 @@
     const isCleanMapDemo = activeStep.dataset.cleanMapDemo === 'true';
     const isCostComparisonDemo = activeStep.dataset.costComparisonDemo === 'true';
     const isAiCoreDemo = activeStep.dataset.aiCoreDemo === 'true';
+    const isFutureActionDemo = activeStep.dataset.futureActionDemo === 'true';
     const sceneNoteContent = [
       ['scene-note__title', activeStep.dataset.noteTitle],
       ['scene-note__body', activeStep.dataset.noteBody],
@@ -592,6 +593,7 @@
     document.body.classList.toggle('clean-map-mode', isCleanMapDemo);
     document.body.classList.toggle('cost-comparison-mode', isCostComparisonDemo);
     document.body.classList.toggle('ai-core-mode', isAiCoreDemo);
+    document.body.classList.toggle('future-action-mode', isFutureActionDemo);
     document.body.classList.toggle('scene-note-mode', sceneNoteContent.length > 0);
     if (activeIndex !== activeStoryIndex) {
       sceneNote.replaceChildren(...sceneNoteContent.map(([className, text]) => {
