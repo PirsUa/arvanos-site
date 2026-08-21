@@ -7,7 +7,11 @@
   const quickNav = document.querySelector('.quick-nav');
   let activeStoryIndex = -1;
   let pageTurnLocked = false;
-  let touchStartY = 0;
+  let wheelGestureLocked = false;
+  let wheelGestureUnlockTimer = 0;
+  let touchStartY = null;
+  let touchNavigationEnabled = false;
+  const WHEEL_GESTURE_IDLE = 450;
   const isEnglish = document.documentElement.lang === 'en';
   const menuCopy = isEnglish
     ? { open: 'Open navigation', close: 'Close navigation', menu: 'Menu', closeText: 'Close' }
@@ -93,19 +97,49 @@
     transitionToPage(activeStoryIndex + direction);
   }
 
-  window.addEventListener('scroll', updateStoryState, { passive: true });
+  function scheduleWheelGestureUnlock() {
+    clearTimeout(wheelGestureUnlockTimer);
+    wheelGestureUnlockTimer = setTimeout(() => {
+      if (pageTurnLocked) {
+        scheduleWheelGestureUnlock();
+        return;
+      }
+      wheelGestureLocked = false;
+    }, WHEEL_GESTURE_IDLE);
+  }
+
+  window.addEventListener('scroll', () => {
+    if (!pageTurnLocked) updateStoryState();
+  }, { passive: true });
   window.addEventListener('wheel', (event) => {
     if (Math.abs(event.deltaY) < 8) return;
     event.preventDefault();
+    const shouldTurn = !wheelGestureLocked && !pageTurnLocked;
+    wheelGestureLocked = true;
+    scheduleWheelGestureUnlock();
+    if (!shouldTurn) return;
     turnPage(event.deltaY > 0 ? 1 : -1);
   }, { passive: false });
   window.addEventListener('touchstart', (event) => {
-    touchStartY = event.changedTouches[0]?.clientY || 0;
+    touchStartY = event.changedTouches[0]?.clientY ?? null;
+    touchNavigationEnabled = !(event.target instanceof Element && event.target.closest('button, a, input, textarea, select'));
   }, { passive: true });
+  window.addEventListener('touchmove', (event) => {
+    if (!touchNavigationEnabled || touchStartY === null) return;
+    const touchY = event.changedTouches[0]?.clientY ?? touchStartY;
+    if (Math.abs(touchStartY - touchY) >= 8) event.preventDefault();
+  }, { passive: false });
   window.addEventListener('touchend', (event) => {
-    const touchEndY = event.changedTouches[0]?.clientY || touchStartY;
+    if (!touchNavigationEnabled || touchStartY === null) return;
+    const touchEndY = event.changedTouches[0]?.clientY ?? touchStartY;
     const distance = touchStartY - touchEndY;
+    touchStartY = null;
+    touchNavigationEnabled = false;
     if (Math.abs(distance) >= 36) turnPage(distance > 0 ? 1 : -1);
+  }, { passive: true });
+  window.addEventListener('touchcancel', () => {
+    touchStartY = null;
+    touchNavigationEnabled = false;
   }, { passive: true });
   window.addEventListener('keydown', (event) => {
     if (event.key === 'Escape' && quickNav.classList.contains('is-open')) {

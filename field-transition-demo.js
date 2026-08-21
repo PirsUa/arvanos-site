@@ -42,7 +42,11 @@
   let refinementLevel = 0;
   let activeStoryIndex = -1;
   let pageTurnLocked = false;
-  let touchStartY = 0;
+  let wheelGestureLocked = false;
+  let wheelGestureUnlockTimer = 0;
+  let touchStartY = null;
+  let touchNavigationEnabled = false;
+  let mapTransitionPlayed = false;
   let selectedMapLayer = '';
   let currentTextureImage = 0;
   let currentTextureSource = '';
@@ -56,6 +60,7 @@
   const BLINK_DURATION = BLINK_CYCLE * 3;
   const LIFT_DURATION = 280;
   const MOVE_DURATION = 1500;
+  const WHEEL_GESTURE_IDLE = 450;
   const TEXTURE_SIZE = 1024;
   const TEXTURE_PADDING = 94;
   const MAP_LAYERS = {
@@ -519,10 +524,28 @@
 
   function triggerTransition() {
     if (state !== 'dormant') return;
+    mapTransitionPlayed = true;
     state = 'blinking';
     sequenceStart = performance.now();
     fieldObject.classList.add('is-active');
     fieldObject.style.opacity = '1';
+  }
+
+  function restoreMapImmediately() {
+    if (!keyframes) return false;
+    mapTransitionPlayed = true;
+    morphFrom = null;
+    mapPoints = targetMapPoints();
+    state = 'map';
+    document.body.classList.add('map-ready');
+    fieldObject.style.transform = 'none';
+    fieldObject.style.opacity = '1';
+    fieldObject.classList.add('is-active', 'is-lifted', 'is-map', 'is-textured');
+    applyRefinementClasses();
+    mapGrid.style.opacity = '';
+    mapStatus.classList.add('is-visible');
+    setPaths(mapPoints);
+    return true;
   }
 
   function resetTransition() {
@@ -634,7 +657,10 @@
       if (state !== 'dormant') resetTransition();
     } else {
       refinementLevel = Number(activeStep.dataset.refinement || 0);
-      if (state === 'dormant') triggerTransition();
+      if (state === 'dormant') {
+        if (!mapTransitionPlayed && activeStep.dataset.scene === 'transition') triggerTransition();
+        else restoreMapImmediately();
+      }
     }
 
     if (mapIsAvailable) {
@@ -714,6 +740,17 @@
     if (edgeUrl) location.assign(edgeUrl);
   }
 
+  function scheduleWheelGestureUnlock() {
+    clearTimeout(wheelGestureUnlockTimer);
+    wheelGestureUnlockTimer = setTimeout(() => {
+      if (pageTurnLocked) {
+        scheduleWheelGestureUnlock();
+        return;
+      }
+      wheelGestureLocked = false;
+    }, WHEEL_GESTURE_IDLE);
+  }
+
   function loadContours(data) {
     if (!data.keyframes || data.keyframes.length < 2) throw new Error('Файл контуру має містити щонайменше два ключові кадри.');
     const vertexCount = Math.max(
@@ -723,6 +760,7 @@
     keyframes = data.keyframes
       .map((frame) => ({ ...frame, points: resampleClosed(normalizeContour(frame.points), vertexCount) }))
       .sort((a, b) => a.time - b.time);
+    if (activeStoryIndex >= 0) updateStoryState();
     requestAnimationFrame(render);
   }
 
@@ -741,19 +779,38 @@
       });
   }
 
-  window.addEventListener('scroll', updateStoryState, { passive: true });
+  window.addEventListener('scroll', () => {
+    if (!pageTurnLocked) updateStoryState();
+  }, { passive: true });
   window.addEventListener('wheel', (event) => {
     if (Math.abs(event.deltaY) < 8) return;
     event.preventDefault();
+    const shouldTurn = !wheelGestureLocked && !pageTurnLocked;
+    wheelGestureLocked = true;
+    scheduleWheelGestureUnlock();
+    if (!shouldTurn) return;
     turnPage(event.deltaY > 0 ? 1 : -1);
   }, { passive: false });
   window.addEventListener('touchstart', (event) => {
-    touchStartY = event.changedTouches[0]?.clientY || 0;
+    touchStartY = event.changedTouches[0]?.clientY ?? null;
+    touchNavigationEnabled = !(event.target instanceof Element && event.target.closest('button, a, input, textarea, select'));
   }, { passive: true });
+  window.addEventListener('touchmove', (event) => {
+    if (!touchNavigationEnabled || touchStartY === null) return;
+    const touchY = event.changedTouches[0]?.clientY ?? touchStartY;
+    if (Math.abs(touchStartY - touchY) >= 8) event.preventDefault();
+  }, { passive: false });
   window.addEventListener('touchend', (event) => {
-    const touchEndY = event.changedTouches[0]?.clientY || touchStartY;
+    if (!touchNavigationEnabled || touchStartY === null) return;
+    const touchEndY = event.changedTouches[0]?.clientY ?? touchStartY;
     const distance = touchStartY - touchEndY;
+    touchStartY = null;
+    touchNavigationEnabled = false;
     if (Math.abs(distance) >= 36) turnPage(distance > 0 ? 1 : -1);
+  }, { passive: true });
+  window.addEventListener('touchcancel', () => {
+    touchStartY = null;
+    touchNavigationEnabled = false;
   }, { passive: true });
   window.addEventListener('keydown', (event) => {
     if (event.key === 'Escape' && quickNav.classList.contains('is-open')) {
