@@ -46,7 +46,6 @@
   let wheelGestureUnlockTimer = 0;
   let touchStartY = null;
   let touchNavigationEnabled = false;
-  let mapTransitionPlayed = false;
   let selectedMapLayer = '';
   let currentTextureImage = 0;
   let currentTextureSource = '';
@@ -524,28 +523,10 @@
 
   function triggerTransition() {
     if (state !== 'dormant') return;
-    mapTransitionPlayed = true;
     state = 'blinking';
     sequenceStart = performance.now();
     fieldObject.classList.add('is-active');
     fieldObject.style.opacity = '1';
-  }
-
-  function restoreMapImmediately() {
-    if (!keyframes) return false;
-    mapTransitionPlayed = true;
-    morphFrom = null;
-    mapPoints = targetMapPoints();
-    state = 'map';
-    document.body.classList.add('map-ready');
-    fieldObject.style.transform = 'none';
-    fieldObject.style.opacity = '1';
-    fieldObject.classList.add('is-active', 'is-lifted', 'is-map', 'is-textured');
-    applyRefinementClasses();
-    mapGrid.style.opacity = '';
-    mapStatus.classList.add('is-visible');
-    setPaths(mapPoints);
-    return true;
   }
 
   function resetTransition() {
@@ -657,10 +638,7 @@
       if (state !== 'dormant') resetTransition();
     } else {
       refinementLevel = Number(activeStep.dataset.refinement || 0);
-      if (state === 'dormant') {
-        if (!mapTransitionPlayed && activeStep.dataset.scene === 'transition') triggerTransition();
-        else restoreMapImmediately();
-      }
+      if (state === 'dormant') triggerTransition();
     }
 
     if (mapIsAvailable) {
